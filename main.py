@@ -1,12 +1,3 @@
-from email.mime import audio
-from random import randint
-from sqlite3 import Row
-from turtle import width
-from click import style
-
-from numpy import rint
-from pygame import font
-from scipy.__config__ import show
 import speech_recognition as sr
 import pyttsx3
 from translate import Translator
@@ -34,22 +25,16 @@ def widgets():
     btn_start.config(height=1, width=10, font=("aviny", 16), bg="blue", fg="white")
     btn_start.grid(row=1, sticky="ne")
 
-
-def SpeakText(command):
-    engine = pyttsx3.init()
-    engine.say(command)
-    engine.runAndWait()
-
 def show_text(text):
     global counter
-    lbl_name = f"lbl_{randint(0, 1000)}"
+    lbl_name = f"lbl_{counter}"
     lbl_name = tk.Label(text=text)
     lbl_name.config(font=("aviny", 22, "bold"))
     lbl_name.grid(row=counter, column=0)
     counter += 1
 
 
-def get_voice():  
+def get_voice():
         try:
             with sr.Microphone() as src:
                 r.adjust_for_ambient_noise(src, duration=0.2)
@@ -61,7 +46,6 @@ def get_voice():
                 translation = translator.translate(text)
     
                 show_text(translation)
-                # SpeakText(text) 
                 
 
         except sr.RequestError as e:
